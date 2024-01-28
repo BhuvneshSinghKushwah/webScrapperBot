@@ -1,2 +1,2 @@
-919617420102
-919661696725
+91xxxxxxxxxx //countryCode without '+' then phone_number, No space
+91xxxxxxxxxx
