@@ -6,7 +6,7 @@ const filePath = 'C:\\Users\\bhuvn\\Downloads\\vek-labs-e8ofKlNHdsg-unsplash.jpg
 
 const start = async () => {
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
         defaultViewport: false,
         userDataDir: './user_data',
     });
