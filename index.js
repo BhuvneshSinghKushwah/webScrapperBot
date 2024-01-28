@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const config = require('./config');
 const fs = require('fs');
 
-const filePath = 'C:\\Users\\bhuvn\\Downloads\\vek-labs-e8ofKlNHdsg-unsplash.jpg';
+const filePath = 'C:\\Users\\bhuvn\\Downloads\\ink_1(1).mov';
 
 const start = async () => {
     const browser = await puppeteer.launch({
@@ -25,7 +25,7 @@ const start = async () => {
             await page.goto('http://web.whatsapp.com');
             await page.waitForSelector('._2QgSC', { timeout: 60000 });
 
-            console.log('logged in');
+            console.log('Succesfully Logged in to the user whatsappweb account');
 
             const precontent = getContent(config.content);
             const content = encodeURIComponent(precontent);
@@ -35,13 +35,13 @@ const start = async () => {
                 await dialog.accept();
             });
 
-            console.log('Before waiting for selector');
+            console.log('Waiting for chat selector');
             const buttonSelector = '._3OtEr .bo8jc6qi';
             await page.waitForSelector(buttonSelector);
-            console.log('After waiting for selector');
+            console.log('Chat selector selected');
             await page.waitForTimeout(1000);
             await page.click(buttonSelector);
-            console.log('after clicking');
+            console.log('Attachment Button clicked');
 
             const dropdownSelector = 'div.bugiwsl0:nth-child(2) > li:nth-child(1) > div:nth-child(1) > span:nth-child(2)';
             try {
@@ -63,6 +63,8 @@ const start = async () => {
                 fileInput.value = '';
             });
 
+            console.log('File uploaded')
+
             const fileUploadDelay = 3000; 
             await page.waitForTimeout(fileUploadDelay);
 
@@ -72,6 +74,8 @@ const start = async () => {
 
             const sendButtonClickDelay = 10000;
             await page.waitForTimeout(sendButtonClickDelay);
+
+            console.log(`File Successfully Sent to ${contact} with content: ${content}`);
         } catch (err) {
             console.error('Error in processing contact:', contact, err);
         } finally {
@@ -80,7 +84,8 @@ const start = async () => {
         }
     }
 
-    console.log('done');
+    console.log('Sent Message to all in the contactlist');
+    console.log('Closing browser Now');
     await page.waitForTimeout(1000);
     await browser.close();
 };
